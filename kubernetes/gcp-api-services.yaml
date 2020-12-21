@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gcp
+  name: gcp-api
+  namespace: gcp-deployment
+spec:
+  ports:
+  - port: 443
+    name: high
+    protocol: TCP
+    targetPort: 5001
+  - port: 80
+    name: low
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: gcp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gcp
+  name: gcp-ui
+  namespace: gcp-deployment
+spec:
+  ports:
+#  - port: 443
+#    name: high
+#    protocol: TCP
+#    targetPort: 443
+  - port: 80
+    name: low
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: gcp    

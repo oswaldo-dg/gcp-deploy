@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  namespace: gcp-deployment
+  annotations:
+    konghq.com/strip-path: "true"
+    kubernetes.io/ingress.class: kong
+spec:
+  tls:
+  - hosts:
+      - localhost
+    secretName: api-tls
+  rules:
+  - http:
+      paths:
+      - path: /services/api
+        pathType: Prefix
+        backend:
+          service:
+            name: gcp-api
+            port: 
+                number: 80                
+      - path: /services/api
+        pathType: Prefix
+        backend:
+          service:
+            name: gcp-api
+            port: 
+                number: 443                                
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gcp-ui
+            port: 
+                number: 80 
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: thm-webapp
+#            port: 
+#                number: 443                                                                

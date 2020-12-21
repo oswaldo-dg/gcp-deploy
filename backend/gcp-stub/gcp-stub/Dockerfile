@@ -2,16 +2,14 @@
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 6001
+EXPOSE 6000
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["gcp-stub/gcp-stub.csproj", "gcp-stub/"]
-RUN dotnet restore "gcp-stub/gcp-stub.csproj"
 COPY . .
-WORKDIR "/src/gcp-stub"
-RUN dotnet build "gcp-stub.csproj" -c Release -o /app/build
+WORKDIR "/src/backend/gcp-stub/gcp-stub"
+RUN dotnet restore "gcp-stub.csproj"
 
 FROM build AS publish
 RUN dotnet publish "gcp-stub.csproj" -c Release -o /app/publish
@@ -19,4 +17,11 @@ RUN dotnet publish "gcp-stub.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Set CA trust for HTTPS
+COPY ["resources/localhost.pfx", "/app/localhost.pfx"]
+COPY ["resources/cacertpem.crt", "/usr/local/share/ca-certificates/cacertpem.crt"]
+RUN update-ca-certificates
+
+
 ENTRYPOINT ["dotnet", "gcp-stub.dll"]
