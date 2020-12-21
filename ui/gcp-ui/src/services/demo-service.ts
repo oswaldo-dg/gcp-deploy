@@ -10,8 +10,9 @@ export class DemoService {
   constructor(private http: HttpClient) { }
 
   // Obtiene los datos
-  public getData(): Observable<unknown[]>{
-    return this.http.get<unknown[]>(environment.url);
+  public getData(url: string): Observable<unknown[]>{
+    console.log(url);
+    return this.http.get<unknown[]>(url);
   }
 
 }
