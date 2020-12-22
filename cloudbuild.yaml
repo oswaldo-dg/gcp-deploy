@@ -3,3 +3,12 @@ steps:
   args: [ 'build', '-t', 'gcr.io/winged-carrier-299322/gcp-stub:2.0', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/winged-carrier-299322/gcp-stub:2.0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/winged-carrier-299322/gcp-api:2.0', '-f', './backend/gcp-api/gcp-api/Dockerfile', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/winged-carrier-299322/gcp-api:2.0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/winged-carrier-299322/gcp-ui:2.0', '-f', './ui/gcp-ui/Dockerfile', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/winged-carrier-299322/gcp-ui:2.0']
+
