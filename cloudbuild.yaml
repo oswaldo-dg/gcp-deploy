@@ -1,0 +1,3 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcp-stub:2.0', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
