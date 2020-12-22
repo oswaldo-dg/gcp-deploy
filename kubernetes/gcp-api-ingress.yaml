@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: api-ingress
@@ -17,28 +17,20 @@ spec:
       - path: /services/api
         pathType: Prefix
         backend:
-          service:
-            name: gcp-api
-            port: 
-                number: 80                
+          serviceName: gcp-api
+          servicePort: 80
       - path: /services/api
         pathType: Prefix
         backend:
-          service:
-            name: gcp-api
-            port: 
-                number: 443                                
+          serviceName: gcp-api
+          servicePort: 443        
       - path: /
         pathType: Prefix
         backend:
-          service:
-            name: gcp-ui
-            port: 
-                number: 80 
+          serviceName: gcp-ui
+          servicePort: 80        
 #      - path: /
 #        pathType: Prefix
 #        backend:
-#          service:
-#            name: thm-webapp
-#            port: 
-#                number: 443                                                                
+#          serviceName: gcp-ui
+#          servicePort: 443
