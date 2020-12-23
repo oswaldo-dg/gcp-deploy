@@ -5,6 +5,7 @@ metadata:
   namespace: gcp-deployment
   annotations:
     konghq.com/strip-path: "true"
+    konghq.com/https-redirect-status-code: "301"
     kubernetes.io/ingress.class: kong
 spec:
   tls:
