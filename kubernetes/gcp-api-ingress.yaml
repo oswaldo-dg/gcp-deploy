@@ -18,9 +18,14 @@ spec:
         pathType: Prefix
         backend:
           serviceName: gcp-api
-          servicePort: 443        
+          servicePort: 443     
+      - path: /services/api
+        pathType: Prefix
+        backend:
+          serviceName: gcp-api
+          servicePort: 80                  
       - path: /
         pathType: Prefix
         backend:
           serviceName: gcp-ui
-          servicePort: 443       
+          servicePort: 80       

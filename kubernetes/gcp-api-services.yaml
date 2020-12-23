@@ -11,6 +11,10 @@ spec:
     name: high
     protocol: TCP
     targetPort: 5001
+  - port: 80
+    name: high
+    protocol: TCP
+    targetPort: 5000
   selector:
     app: gcp
 ---
@@ -23,6 +27,10 @@ metadata:
   namespace: gcp-deployment
 spec:
   ports:
+  - port: 80
+    name: high
+    protocol: TCP
+    targetPort: 80
   - port: 443
     name: high
     protocol: TCP
