@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cockpit-ingress
+  namespace: thm
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/override: "https-only"
+spec:
+  tls:
+  - secretName: vipcockpit-tls
+    hosts:
+      - secondk8s.eccordion.com
+  rules:
+  - host: secondk8s.eccordion.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vipcockpit
+          servicePort: 80
+

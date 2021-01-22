@@ -30,16 +30,19 @@ namespace gcp_api.Controllers
             _clientFactory = clientFactory;
             
         }
-
-        
-
    
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get()
         {
-            Console.WriteLine("---------------------------?");
+            
             Console.WriteLine(apioptions.wf);
+            Console.WriteLine("---------------------------HEADERS");
+            Request.Headers.ToList().ForEach(h =>
+           {
+               Console.WriteLine($"{h.Key}::{h.Value}");
+           });
+
             var client = _clientFactory.CreateClient();
             WF.apiClient cl = new WF.apiClient(apioptions.wf, client);
 

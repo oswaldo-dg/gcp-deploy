@@ -1,0 +1,16 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: kong-api-header-transformer
+  namespace: thm
+config: 
+config:
+    add:
+      headers: 
+        - Tabrasa-AppScope:>
+          $((function() local value = headers.Origin 
+          if not value then return  end 
+          if value == "https://uat-products.tabrasa.io" then return "Tabrasa.ConsumerPortal" end 
+          if value == "https://uat-nextgenint.vantageproduction2.com" then return "Tabrasa.Nextgen" end 
+          return  end)())
+plugin: request-transformer

@@ -3,13 +3,15 @@ kind: Ingress
 metadata:
   name: api-ingress
   namespace: gcp-deployment
-  annotations:
+  annotations:  
     konghq.com/strip-path: "true"
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: kong-header-demo
 spec:
   tls:
   - hosts:
-      - k8s.eccordion.com
+#      - k8s.eccordion.com
+      - localhost
     secretName: api-tls
   rules:
   - http:
@@ -18,14 +20,19 @@ spec:
         pathType: Prefix
         backend:
           serviceName: gcp-api
-          servicePort: 443     
+          servicePort: 80
       - path: /services/api
         pathType: Prefix
         backend:
           serviceName: gcp-api
-          servicePort: 80                  
+          servicePort: 443        
       - path: /
         pathType: Prefix
         backend:
           serviceName: gcp-ui
-          servicePort: 80       
+          servicePort: 80        
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: gcp-ui
+          servicePort: 443

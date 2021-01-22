@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tabrasa-consumerportal
+  namespace: thm
+  labels:
+    app: tabrasa-api
+spec:
+  containers:
+#Consumer Portal Web App
+  - name: consumerportal-webapp
+    image: oswaldodgmx/debug:webapp.thm
+    ports:
+    - containerPort: 80
+    - containerPort: 443
+  hostNetwork: true

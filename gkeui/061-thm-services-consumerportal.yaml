@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: tabrasa-api
+  name: consumerportal
+  namespace: thm
+spec:
+  ports:
+  - port: 80
+    name: low
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: tabrasa-api

@@ -1,0 +1,17 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: kong-header-demo
+  namespace: gcp-deployment
+config: 
+config:
+    add:
+      headers: 
+        - "h2:v100000000000000"
+        - "h3:v111111111111111"
+        - h1:>
+          $((function() local value = headers.Origin 
+          if not value then return  end 
+          if value == "https://uat-demo.com" then return "000x1" 
+          end return "-" end)())
+plugin: request-transformer

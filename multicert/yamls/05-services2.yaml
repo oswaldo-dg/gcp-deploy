@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gcp-app
+  name: gcp-services-app2
+  namespace: thm
+spec:
+  ports:
+  - port: 443
+    name: app2
+    protocol: TCP
+    targetPort: 50002
+  selector:
+    app: gcp-app

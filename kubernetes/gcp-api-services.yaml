@@ -5,16 +5,18 @@ metadata:
     app: gcp
   name: gcp-api
   namespace: gcp-deployment
+  annotations:
+    konghq.com/protocol: https
 spec:
   ports:
+  - port: 80
+    name: low
+    protocol: TCP
+    targetPort: 7000
   - port: 443
     name: high
     protocol: TCP
-    targetPort: 5001
-  - port: 80
-    name: high
-    protocol: TCP
-    targetPort: 5000
+    targetPort: 7001    
   selector:
     app: gcp
 ---
@@ -28,7 +30,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    name: high
+    name: low
     protocol: TCP
     targetPort: 80
   - port: 443
@@ -36,4 +38,4 @@ spec:
     protocol: TCP
     targetPort: 443
   selector:
-    app: gcp    
+    app: gcp

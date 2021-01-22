@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gcp-pod
+  namespace: thm
+  labels:
+    app: gcp-app
+spec:
+  containers:
+# hello 
+  - name: hello
+    image: "gcr.io/google-samples/hello-app:2.0"
+    env:
+      - name: "PORT"
+        value: "50001"  
+# hello 2
+  - name: hello-2
+    image: "gcr.io/google-samples/hello-app:2.0"
+    env:
+      - name: "PORT"
+        value: "50002"        

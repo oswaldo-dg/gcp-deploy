@@ -1,0 +1,23 @@
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress-k8s
+  namespace: thm
+  annotations:  
+    konghq.com/strip-path: "true"
+    kubernetes.io/ingress.class: kong
+    konghq.com/override: "https-only"
+spec:
+  tls:
+  - secretName: api-tls-k8s
+    hosts:
+      - k8s.eccordion.com
+  rules:
+  - host: k8s.eccordion.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gcp-services-app1
+          servicePort: 443
