@@ -45,24 +45,41 @@ namespace gcp_api.Controllers
                Console.WriteLine($"{h.Key}::{h.Value}");
            });
 
-            Console.WriteLine("---------------------------FROM");
-
-            Request.Form.Keys.ToList().ForEach(k =>
+            try
             {
-                Console.WriteLine($"{k}::{Request.Form[k]}");
-            });
+                Console.WriteLine("---------------------------FROM");
 
-
-            Console.WriteLine("---------------------------BODY");
-            var bodyStr = "";
-            // Arguments: Stream, Encoding, detect encoding, buffer size 
-            // AND, the most important: keep stream opened
-            using (StreamReader reader
-                      = new StreamReader(Request.Body, Encoding.UTF8, true, 1024, true))
-            {
-                bodyStr = reader.ReadToEnd();
+                Request.Form.Keys.ToList().ForEach(k =>
+                {
+                    Console.WriteLine($"{k}::{Request.Form[k]}");
+                });
             }
-            Console.WriteLine(bodyStr);
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            try
+            {
+                Console.WriteLine("---------------------------BODY");
+                var bodyStr = "";
+                // Arguments: Stream, Encoding, detect encoding, buffer size 
+                // AND, the most important: keep stream opened
+                using (StreamReader reader
+                          = new StreamReader(Request.Body, Encoding.UTF8, true, 1024, true))
+                {
+                    bodyStr = reader.ReadToEnd();
+                }
+                Console.WriteLine(bodyStr);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
 
             var client = _clientFactory.CreateClient();
