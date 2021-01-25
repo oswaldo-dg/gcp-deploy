@@ -38,7 +38,7 @@ namespace gcp_api.Controllers
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get()
         {
             
-            Console.WriteLine(apioptions.wf);
+            Console.WriteLine("00001");
             Console.WriteLine("---------------------------HEADERS");
             Request.Headers.ToList().ForEach(h =>
            {
@@ -47,7 +47,7 @@ namespace gcp_api.Controllers
 
             try
             {
-                Console.WriteLine("---------------------------FROM");
+                Console.WriteLine("---------------------------fORM");
 
                 Request.Form.Keys.ToList().ForEach(k =>
                 {
@@ -56,8 +56,8 @@ namespace gcp_api.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
 
-                throw;
             }
 
 
@@ -74,10 +74,10 @@ namespace gcp_api.Controllers
                 }
                 Console.WriteLine(bodyStr);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                Console.WriteLine(ex.Message);
             }
             
 
