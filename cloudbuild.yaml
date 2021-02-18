@@ -1,14 +1,14 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/gcp-stub:2.2', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/latest', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/winged-carrier-299322/gcp-stub:2.2']
+  args: ['push', 'gcr.io/winged-carrier-299322/latest']
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/gcp-api:2.2', '-f', './backend/gcp-api/gcp-api/Dockerfile', '.' ]
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/latest', '-f', './backend/gcp-api/gcp-api/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/winged-carrier-299322/gcp-api:2.2']
+  args: ['push', 'gcr.io/winged-carrier-299322/latest']
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/gcp-ui:2.2', '-f', './ui/gcp-ui/Dockerfile', '.' ]
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/latest', '-f', './ui/gcp-ui/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/winged-carrier-299322/gcp-ui:2.2']
+  args: ['push', 'gcr.io/winged-carrier-299322/latest']
 
