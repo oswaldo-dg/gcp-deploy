@@ -1,14 +1,14 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/$SHORT_SHA', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/stub:$SHORT_SHA', '-f', './backend/gcp-stub/gcp-stub/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/winged-carrier-299322/$SHORT_SHA']
+  args: ['push', 'gcr.io/winged-carrier-299322/stub:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/$SHORT_SHA', '-f', './backend/gcp-api/gcp-api/Dockerfile', '.' ]
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/api:$SHORT_SHA', '-f', './backend/gcp-api/gcp-api/Dockerfile', '.' ]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/winged-carrier-299322/$SHORT_SHA']
-#- name: 'gcr.io/cloud-builders/docker'
-#  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/$SHORT_SHA', '-f', './ui/gcp-ui/Dockerfile', '.' ]
-#- name: 'gcr.io/cloud-builders/docker'
-#  args: ['push', 'gcr.io/winged-carrier-299322/$SHORT_SHA']
+  args: ['push', 'gcr.io/winged-carrier-299322/api:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '--no-cache', '-t', 'gcr.io/winged-carrier-299322/ui:$SHORT_SHA', '-f', './ui/gcp-ui/Dockerfile', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/winged-carrier-299322/ui:$SHORT_SHA']
 
