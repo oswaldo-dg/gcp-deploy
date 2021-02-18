@@ -12,10 +12,15 @@ using System.Threading.Tasks;
 
 namespace gcp_api.Controllers
 {
+
+ 
+
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -33,6 +38,8 @@ namespace gcp_api.Controllers
             
         }
    
+        [HttpPost]
+        public async Task<ActionResult<>> post()
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get()
