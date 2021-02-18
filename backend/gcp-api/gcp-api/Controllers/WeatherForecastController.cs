@@ -38,9 +38,6 @@ namespace gcp_api.Controllers
             
         }
    
-        [HttpPost]
-        public async Task<ActionResult<>> post()
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get()
         {
