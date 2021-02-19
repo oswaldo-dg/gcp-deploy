@@ -31,7 +31,7 @@ spec:
       value: "./localhost.pfx"
 # API
   - name: gcp-api-microservice
-    image: gcr.io/GOOGLE_CLOUD_PROJECT/api:COMMIT_SHA
+    image: gcr.io/GOOGLE_CLOUD_PROJECT/api:40c6d00
     ports:
     - containerPort: 7001
     - containerPort: 7000
@@ -53,6 +53,6 @@ spec:
       value: "https://localhost:5001/"
 # UI
   - name: gcp-ui-microservice
-    image: gcr.io/GOOGLE_CLOUD_PROJECT/ui:COMMIT_SHA
+    image: gcr.io/GOOGLE_CLOUD_PROJECT/ui:40c6d00
     ports:
     - containerPort: 80
