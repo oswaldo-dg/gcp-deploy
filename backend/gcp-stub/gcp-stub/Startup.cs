@@ -17,6 +17,7 @@ namespace gcp_stub
     {
         public Startup(IConfiguration configuration)
         {
+            Console.Writeline("Welcome ----------------- "):
             Configuration = configuration;
         }
 
