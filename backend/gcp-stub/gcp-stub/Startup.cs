@@ -17,7 +17,7 @@ namespace gcp_stub
     {
         public Startup(IConfiguration configuration)
         {
-            Console.WriteLine("---------------------------HEADERS");
+            Console.WriteLine("---------------------------WRONG VERSION");
             Configuration = configuration;
         }
 
